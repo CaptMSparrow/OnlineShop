@@ -17,3 +17,7 @@
 
 ## API
 Документация для работы с API представлена в каталоге [swagger] https://github.com/CaptMSparrow/OnlineShop/tree/main/swagger
+Дополнительно ознакомиться можно перейдя по ссылке https://app.swaggerhub.com/apis/myown-816/myShopAPI/1.0.0#/user/get_products11
+
+## Kafka
+Описание используемого брокера сообщений, приложения-продюсера и приложения-потребителя, а также требования представлены в каталоге [Kafka] https://github.com/CaptMSparrow/OnlineShop/tree/main/Kafka
