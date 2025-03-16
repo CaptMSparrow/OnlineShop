@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "description": "Выполняемое действие (например, 'creation', ‘change')"
+    },
+    "id_product": {
+      "type": "integer",
+      "description": "Идентификатор товара"
+    },
+    "name": {
+      "type": "string",
+      "description": "Название продукта"
+    },
+    "description": {
+      "type": "string",
+      "description": "Описание продукта"
+    },
+    "category": {
+      "type": "string",
+      "description": "Категория товара"
+    },
+    "price": {
+      "type": "number",
+      “format”: “decimal”
+      "description": "Цена товара"
+    },
+    "quantity": {
+      "type": "integer",
+      "description": "Количество товара на складе"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Дата и время создания события"
+     }
+  },
+  "required": ["action", "id_product", "name", "description", "category", "price", "quantity",”date”],
+  "additionalProperties": false
+}
+
