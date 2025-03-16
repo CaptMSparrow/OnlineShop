@@ -1,0 +1,950 @@
+<!doctype html>
+<html>
+  <head>
+    <title>API for the online shop</title>
+    <style type="text/css">
+      body {
+      	font-family: Trebuchet MS, sans-serif;
+      	font-size: 15px;
+      	color: #444;
+      	margin-right: 24px;
+      }
+      
+      h1	{
+      	font-size: 25px;
+      }
+      h2	{
+      	font-size: 20px;
+      }
+      h3	{
+      	font-size: 16px;
+      	font-weight: bold;
+      }
+      hr	{
+      	height: 1px;
+      	border: 0;
+      	color: #ddd;
+      	background-color: #ddd;
+      }
+      
+      .app-desc {
+        clear: both;
+        margin-left: 20px;
+      }
+      .param-name {
+        width: 100%;
+      }
+      .license-info {
+        margin-left: 20px;
+      }
+      
+      .license-url {
+        margin-left: 20px;
+      }
+      
+      .model {
+        margin: 0 0 0px 20px;
+      }
+      
+      .method {
+        margin-left: 20px;
+      }
+      
+      .method-notes	{
+      	margin: 10px 0 20px 0;
+      	font-size: 90%;
+      	color: #555;
+      }
+      
+      pre {
+        padding: 10px;
+        margin-bottom: 2px;
+      }
+      
+      .http-method {
+       text-transform: uppercase;
+      }
+      
+      pre.get {
+        background-color: #0f6ab4;
+      }
+      
+      pre.post {
+        background-color: #10a54a;
+      }
+      
+      pre.put {
+        background-color: #c5862b;
+      }
+      
+      pre.delete {
+        background-color: #a41e22;
+      }
+      
+      .huge	{
+      	color: #fff;
+      }
+      
+      pre.example {
+        background-color: #f3f3f3;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      
+      code {
+        white-space: pre;
+      }
+      
+      .nickname {
+        font-weight: bold;
+      }
+      
+      .method-path {
+        font-size: 1.5em;
+        background-color: #0f6ab4;
+      }
+      
+      .up {
+        float:right;
+      }
+      
+      .parameter {
+        width: 500px;
+      }
+      
+      .param {
+        width: 500px;
+        padding: 10px 0 0 20px;
+        font-weight: bold;
+      }
+      
+      .param-desc {
+        width: 700px;
+        padding: 0 0 0 20px;
+        color: #777;
+      }
+      
+      .param-type {
+        font-style: italic;
+      }
+      
+      .param-enum-header {
+      width: 700px;
+      padding: 0 0 0 60px;
+      color: #777;
+      font-weight: bold;
+      }
+      
+      .param-enum {
+      width: 700px;
+      padding: 0 0 0 80px;
+      color: #777;
+      font-style: italic;
+      }
+      
+      .field-label {
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      
+      .field-items	{
+      	padding: 0 0 15px 0;
+      	margin-bottom: 15px;
+      }
+      
+      .return-type {
+        clear: both;
+        padding-bottom: 10px;
+      }
+      
+      .param-header {
+        font-weight: bold;
+      }
+      
+      .method-tags {
+        text-align: right;
+      }
+      
+      .method-tag {
+        background: none repeat scroll 0% 0% #24A600;
+        border-radius: 3px;
+        padding: 2px 10px;
+        margin: 2px;
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+  <h1>API for the online shop</h1>
+    <div class="app-desc">API for the online shop.</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="mariya_shop@example.com">mariya_shop@example.com</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/myown-816/myShopAPI/1.0.0</div>
+    <div class="license-info">Apache 2.0</div>
+    <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+    <ol>
+      <li></li>
+    </ol>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Administrator">Administrator</a></h4>
+  <ul>
+  <li><a href="#productsGet"><code><span class="http-method">get</span> /products</code></a></li>
+  <li><a href="#productsIdProductDelete"><code><span class="http-method">delete</span> /products/{id_product}</code></a></li>
+  <li><a href="#productsIdProductGet"><code><span class="http-method">get</span> /products/{id_product}</code></a></li>
+  <li><a href="#productsIdProductPatch"><code><span class="http-method">patch</span> /products/{id_product}</code></a></li>
+  <li><a href="#productsPost"><code><span class="http-method">post</span> /products</code></a></li>
+  </ul>
+  <h4><a href="#Client">Client</a></h4>
+  <ul>
+  <li><a href="#ordersPost"><code><span class="http-method">post</span> /orders</code></a></li>
+  <li><a href="#productsGet"><code><span class="http-method">get</span> /products</code></a></li>
+  <li><a href="#productsIdProductGet"><code><span class="http-method">get</span> /products/{id_product}</code></a></li>
+  </ul>
+  <h4><a href="#User">User</a></h4>
+  <ul>
+  <li><a href="#loginPost"><code><span class="http-method">post</span> /login</code></a></li>
+  <li><a href="#productsGet"><code><span class="http-method">get</span> /products</code></a></li>
+  <li><a href="#productsIdProductGet"><code><span class="http-method">get</span> /products/{id_product}</code></a></li>
+  </ul>
+
+  <h1><a name="Administrator">Administrator</a></h1>
+  <div class="method"><a name="productsGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /products</code></pre></div>
+    <div class="method-summary">Просмотр всех товаров (<span class="nickname">productsGet</span>)</div>
+    <div class="method-notes">Получение списка всех товаров в магазине с поддержкой пагинации и сортировки.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">page (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Номер страницы для пагинации. default: 1 </div>      <div class="param">limit (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Количество товаров на странице. default: 10 </div>      <div class="param">sort_by (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Поле для сортировки (price, name). default: name </div>      <div class="param">order (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Порядок сортировки. default: desc </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#product">product</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "id_product" : 123,
+  "price" : 100,
+  "name" : "Кольцо Змея",
+  "description" : "Серебряное кольцо в виде змеи, безразмерное",
+  "category" : "Кольца"
+}, {
+  "id_product" : 123,
+  "price" : 100,
+  "name" : "Кольцо Змея",
+  "description" : "Серебряное кольцо в виде змеи, безразмерное",
+  "category" : "Кольца"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Список товаров
+        
+    <h4 class="field-label">500</h4>
+    Внутренняя ошибка сервера
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productsIdProductDelete"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /products/{id_product}</code></pre></div>
+    <div class="method-summary">Удаление товара (<span class="nickname">productsIdProductDelete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id_product (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Идентификатор товара </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Товар учпешно удален
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Параметры запроса недействительны. Проверьте и попробуйте еще раз
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Товар не найден
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    Внутренняя ошибка сервера
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productsIdProductGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /products/{id_product}</code></pre></div>
+    <div class="method-summary">Просмотр товара (<span class="nickname">productsIdProductGet</span>)</div>
+    <div class="method-notes">Получение информации о конкретном товаре по его ID.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id_product (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Идентификатор товара </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#product">product</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "id_product" : 123,
+  "price" : 100,
+  "name" : "Кольцо Змея",
+  "description" : "Серебряное кольцо в виде змеи, безразмерное",
+  "category" : "Кольца"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Товар найден
+        <a href="#product">product</a>
+    <h4 class="field-label">404</h4>
+    Товар не найден
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    Внутренняя ошибка сервера
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productsIdProductPatch"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="patch"><code class="huge"><span class="http-method">patch</span> /products/{id_product}</code></pre></div>
+    <div class="method-summary">Изменить данные о товаре (<span class="nickname">productsIdProductPatch</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id_product (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Идентификатор товара </div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#productNew">productNew</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Внесение изменеий в данные о товаре </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "id_product" : 1
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Даннные о товаре успешно обновлены
+        <a href="#inline_response_200">inline_response_200</a>
+    <h4 class="field-label">400</h4>
+    Введены некорректные данные о товаре. Проверьте и попробуйте еще раз
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productsPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /products</code></pre></div>
+    <div class="method-summary">Добавить товар (<span class="nickname">productsPost</span>)</div>
+    <div class="method-notes">Добавить новый товар в каталог</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#productNew">productNew</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Новый товар для добавления в каталог </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "id_product" : 1
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Товар успешно добавлен
+        <a href="#inline_response_200">inline_response_200</a>
+    <h4 class="field-label">400</h4>
+    Введены некорректные данные о товаре. Проверьте и попробуйте еще раз.
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    Данный товар уже существует.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Client">Client</a></h1>
+  <div class="method"><a name="ordersPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /orders</code></pre></div>
+    <div class="method-summary">Оформить заказ (<span class="nickname">ordersPost</span>)</div>
+    <div class="method-notes">Оформление заказа</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#order">order</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Новый заказ оформлен </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200_1">inline_response_200_1</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "order_id" : 1
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Заказ успешно оформлен
+        <a href="#inline_response_200_1">inline_response_200_1</a>
+    <h4 class="field-label">400</h4>
+    Введены некорректные данные заказа. Проверьте и попробуйте еще раз.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productsGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /products</code></pre></div>
+    <div class="method-summary">Просмотр всех товаров (<span class="nickname">productsGet</span>)</div>
+    <div class="method-notes">Получение списка всех товаров в магазине с поддержкой пагинации и сортировки.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">page (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Номер страницы для пагинации. default: 1 </div>      <div class="param">limit (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Количество товаров на странице. default: 10 </div>      <div class="param">sort_by (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Поле для сортировки (price, name). default: name </div>      <div class="param">order (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Порядок сортировки. default: desc </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#product">product</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "id_product" : 123,
+  "price" : 100,
+  "name" : "Кольцо Змея",
+  "description" : "Серебряное кольцо в виде змеи, безразмерное",
+  "category" : "Кольца"
+}, {
+  "id_product" : 123,
+  "price" : 100,
+  "name" : "Кольцо Змея",
+  "description" : "Серебряное кольцо в виде змеи, безразмерное",
+  "category" : "Кольца"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Список товаров
+        
+    <h4 class="field-label">500</h4>
+    Внутренняя ошибка сервера
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productsIdProductGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /products/{id_product}</code></pre></div>
+    <div class="method-summary">Просмотр товара (<span class="nickname">productsIdProductGet</span>)</div>
+    <div class="method-notes">Получение информации о конкретном товаре по его ID.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id_product (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Идентификатор товара </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#product">product</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "id_product" : 123,
+  "price" : 100,
+  "name" : "Кольцо Змея",
+  "description" : "Серебряное кольцо в виде змеи, безразмерное",
+  "category" : "Кольца"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Товар найден
+        <a href="#product">product</a>
+    <h4 class="field-label">404</h4>
+    Товар не найден
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    Внутренняя ошибка сервера
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="User">User</a></h1>
+  <div class="method"><a name="loginPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /login</code></pre></div>
+    <div class="method-summary">Вход пользователя в систему (<span class="nickname">loginPost</span>)</div>
+    <div class="method-notes">Аутентификация пользователя с использованием логина и пароля</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#login_body">login_body</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200_2">inline_response_200_2</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "access_token" : "XXXT-0Rgs"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Успешная аутентификация
+        <a href="#inline_response_200_2">inline_response_200_2</a>
+    <h4 class="field-label">400</h4>
+    Не заполнены обязательные поля
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Неверный логин или пароль
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    Внутренняя ошибка сервера
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productsGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /products</code></pre></div>
+    <div class="method-summary">Просмотр всех товаров (<span class="nickname">productsGet</span>)</div>
+    <div class="method-notes">Получение списка всех товаров в магазине с поддержкой пагинации и сортировки.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">page (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Номер страницы для пагинации. default: 1 </div>      <div class="param">limit (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Количество товаров на странице. default: 10 </div>      <div class="param">sort_by (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Поле для сортировки (price, name). default: name </div>      <div class="param">order (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Порядок сортировки. default: desc </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#product">product</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "id_product" : 123,
+  "price" : 100,
+  "name" : "Кольцо Змея",
+  "description" : "Серебряное кольцо в виде змеи, безразмерное",
+  "category" : "Кольца"
+}, {
+  "id_product" : 123,
+  "price" : 100,
+  "name" : "Кольцо Змея",
+  "description" : "Серебряное кольцо в виде змеи, безразмерное",
+  "category" : "Кольца"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Список товаров
+        
+    <h4 class="field-label">500</h4>
+    Внутренняя ошибка сервера
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productsIdProductGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /products/{id_product}</code></pre></div>
+    <div class="method-summary">Просмотр товара (<span class="nickname">productsIdProductGet</span>)</div>
+    <div class="method-notes">Получение информации о конкретном товаре по его ID.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id_product (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Идентификатор товара </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#product">product</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "id_product" : 123,
+  "price" : 100,
+  "name" : "Кольцо Змея",
+  "description" : "Серебряное кольцо в виде змеи, безразмерное",
+  "category" : "Кольца"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Товар найден
+        <a href="#product">product</a>
+    <h4 class="field-label">404</h4>
+    Товар не найден
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    Внутренняя ошибка сервера
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#inline_response_200"><code>inline_response_200</code></a></li>
+    <li><a href="#inline_response_200_1"><code>inline_response_200_1</code></a></li>
+    <li><a href="#inline_response_200_2"><code>inline_response_200_2</code></a></li>
+    <li><a href="#login_body"><code>login_body</code></a></li>
+    <li><a href="#order"><code>order</code></a></li>
+    <li><a href="#product"><code>product</code></a></li>
+    <li><a href="#productNew"><code>productNew</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="inline_response_200"><code>inline_response_200</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id_product (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_200_1"><code>inline_response_200_1</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">order_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_200_2"><code>inline_response_200_2</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">access_token (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Bearer Token для аутентификации </div>
+          <div class="param-desc"><span class="param-type">example: XXXT-0Rgs</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="login_body"><code>login_body</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Логин пользователя </div>
+          <div class="param-desc"><span class="param-type">example: exampleUser</span></div>
+<div class="param">password </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Пароль пользователя format: password</div>
+          <div class="param-desc"><span class="param-type">example: examplePassword</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="order"><code>order</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id_product </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Идентификатор товара </div>
+          <div class="param-desc"><span class="param-type">example: 123</span></div>
+<div class="param">id_user </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Идентификатор пользователя </div>
+          <div class="param-desc"><span class="param-type">example: 111</span></div>
+<div class="param">delivery_method </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Способ доставки </div>
+          <div class="param-desc"><span class="param-type">example: Самовывоз</span></div>
+<div class="param">total_price </div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span> Итоговая цена заказа format: decimal</div>
+          <div class="param-desc"><span class="param-type">example: 100</span></div>
+<div class="param">payment_method </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Способ оплаты </div>
+          <div class="param-desc"><span class="param-type">example: credit_card</span></div>
+<div class="param">quantity </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Количество заказанного товара </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="product"><code>product</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id_product </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Идентификатор товара </div>
+          <div class="param-desc"><span class="param-type">example: 123</span></div>
+<div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Название продукта </div>
+          <div class="param-desc"><span class="param-type">example: Кольцо Змея</span></div>
+<div class="param">description </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Описание продукта </div>
+          <div class="param-desc"><span class="param-type">example: Серебряное кольцо в виде змеи, безразмерное</span></div>
+<div class="param">price </div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span> Цена товара format: decimal</div>
+          <div class="param-desc"><span class="param-type">example: 100</span></div>
+<div class="param">category </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Категория товара </div>
+          <div class="param-desc"><span class="param-type">example: Кольца</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="productNew"><code>productNew</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id_product </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Идентификатор товара </div>
+          <div class="param-desc"><span class="param-type">example: 123</span></div>
+<div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Название продукта </div>
+          <div class="param-desc"><span class="param-type">example: Кольцо Змея</span></div>
+<div class="param">description </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Описание продукта </div>
+          <div class="param-desc"><span class="param-type">example: Серебряное кольцо в виде змеи, безразмерное</span></div>
+<div class="param">price </div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span> Цена товара format: decimal</div>
+          <div class="param-desc"><span class="param-type">example: 100</span></div>
+<div class="param">category </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Категория товара </div>
+          <div class="param-desc"><span class="param-type">example: Кольца</span></div>
+<div class="param">quantity </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Количество товара на складе </div>
+          <div class="param-desc"><span class="param-type">example: 100</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
