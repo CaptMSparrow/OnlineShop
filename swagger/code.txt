@@ -1,0 +1,365 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/myown-816/myShopAPI/1.0.0
+info:
+  description: API for the online shop.
+  version: "1.0.0"
+  title: API for the online shop
+  contact:
+    email: mariya_shop@example.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: user
+    description: Пользователь (все пользователи)
+  - name: administrator
+    description: Администратор
+  - name: client
+    description: Клиент (зарегистрированный пользователь)
+paths:
+  /products:
+    get:
+      tags:
+        - user
+        - client
+        - administrator
+      summary: Просмотр всех товаров
+      description: Получение списка всех товаров в магазине с поддержкой пагинации и сортировки.
+      parameters:
+        - name: page
+          in: query
+          description: Номер страницы для пагинации.
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: Количество товаров на странице.
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+        - name: sort_by
+          in: query
+          description: Поле для сортировки (price, name).
+          required: false
+          schema:
+            type: string
+            enum: [price, name]
+            default: name
+        - name: order
+          in: query
+          description: Порядок сортировки.
+          required: false
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+      responses:
+        '200':
+          description: Список товаров
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/product'
+        '500':
+          description: Внутренняя ошибка сервера  
+          
+    post:
+      tags:
+        - administrator
+      summary: Добавить товар
+      security:
+        - bearerAuth: []
+      description: Добавить новый товар в каталог
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/productNew'
+        description: Новый товар для добавления в каталог
+      responses:
+        '200':
+          description: Товар успешно добавлен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id_product:
+                    type: integer
+                    example: 1
+        '400':
+          description: Введены некорректные данные о товаре. Проверьте и попробуйте еще раз.
+        '409':
+          description: Данный товар уже существует.
+          
+  /products/{id_product}:
+    parameters:
+      - name: id_product
+        in: path
+        description: Идентификатор товара
+        required: true
+        schema:
+          type: integer
+          example: 1
+    get:
+      tags:
+        - user
+        - client
+        - administrator
+      summary: Просмотр товара 
+      description: Получение информации о конкретном товаре по его ID.
+      responses:
+        '200':
+          description: Товар найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/product'
+        '404':
+          description: Товар не найден
+        '500':
+          description: Внутренняя ошибка сервера
+          
+    patch:
+      tags:
+        - administrator
+      summary: Изменить данные о товаре
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/productNew'
+        description: Внесение изменеий в данные о товаре
+      responses:
+        '200':
+          description: Даннные о товаре успешно обновлены
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id_product:
+                    type: integer
+                    example: 1
+        '400':
+          description: Введены некорректные данные о товаре. Проверьте и попробуйте еще раз
+          
+    delete:
+      tags:
+        - administrator
+      summary: Удаление товара
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Товар учпешно удален
+        '400':
+          description: Параметры запроса недействительны. Проверьте и попробуйте еще раз
+        '404':
+          description: Товар не найден
+        '500':
+          description: Внутренняя ошибка сервера      
+          
+  /orders:
+    post:
+      tags:
+        - client
+      summary: Оформить заказ
+      security:
+        - bearerAuth: []
+      description: Оформление заказа
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/order'
+        description: Новый заказ оформлен
+      responses:
+        '200':
+          description: Заказ успешно оформлен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order_id:
+                    type: integer
+                    example: 1
+        '400':
+          description: Введены некорректные данные заказа. Проверьте и попробуйте еще раз.
+
+
+  /login:
+    post:
+      tags:
+        - user
+      summary: Вход пользователя в систему
+      description: Аутентификация пользователя с использованием логина и пароля
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                  description: Логин пользователя
+                  example: "exampleUser"
+                password:
+                  type: string
+                  format: password
+                  description: Пароль пользователя
+                  example: "examplePassword"
+      responses:
+        '200':
+          description: Успешная аутентификация
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: Bearer Token для аутентификации
+                    example: "XXXT-0Rgs"
+        '400':
+          description: Не заполнены обязательные поля
+        '401':
+          description: Неверный логин или пароль
+        '500':
+          description: Внутренняя ошибка сервера
+          
+          
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      
+      
+  schemas:
+    product:
+      type: object
+      required:
+        - id_product
+        - name
+        - description
+        - price
+        - category
+      properties:
+        id_product:
+          type: integer
+          description: Идентификатор товара
+          example: 123
+        name:
+          type: string
+          description: Название продукта
+          example: "Кольцо Змея"
+        description:
+          type: string
+          description: Описание продукта
+          example: "Серебряное кольцо в виде змеи, безразмерное" 
+        price:
+          type: number
+          format: decimal
+          description: Цена товара
+          example: 100.00
+        category:
+          type: string
+          description: Категория товара
+          example: "Кольца"
+
+          
+    productNew:
+      type: object
+      required:
+        - id_product
+        - name
+        - description
+        - price
+        - category
+        - quantity
+      properties:
+        id_product:
+          type: integer
+          description: Идентификатор товара
+          example: 123
+        name:
+          type: string
+          description: Название продукта
+          example: "Кольцо Змея"
+        description:
+          type: string
+          description: Описание продукта
+          example: "Серебряное кольцо в виде змеи, безразмерное" 
+        price:
+          type: number
+          format: decimal
+          description: Цена товара
+          example: 100.00
+        category:
+          type: string
+          description: Категория товара
+          example: "Кольца"
+        quantity:
+          type: integer
+          description: Количество товара на складе
+          example: 100
+          
+    order:
+      type: object
+      required:
+        - id_product
+        - id_user
+        - quantity
+        - delivery_method
+        - payment_method
+        - total_price
+      properties:
+        id_product:
+          type: integer
+          description: Идентификатор товара
+          example: 123
+        id_user:
+          type: integer
+          description: Идентификатор пользователя
+          example: 111
+        delivery_method:
+          type: string
+          description: Способ доставки
+          example: "Самовывоз" 
+        total_price:
+          type: number
+          format: decimal
+          description: Итоговая цена заказа
+          example: 100.00
+        payment_method:
+          type: string
+          description: Способ оплаты
+          example: "credit_card"
+        quantity:
+          type: integer
+          description: Количество заказанного товара
+          example: 1
+    
