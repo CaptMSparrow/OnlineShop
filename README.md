@@ -15,9 +15,18 @@
 ## Архитектура проекта
 Информация по архитектуре проекта представлена в каталоге [архитектура] https://github.com/CaptMSparrow/OnlineShop/tree/main/%D0%B0%D1%80%D1%85%D0%B8%D1%82%D0%B5%D0%BA%D1%82%D1%83%D1%80%D0%B0
 
+---
+
+## База данных
+Физическая модель данных приведена в файле [БД.png] https://github.com/CaptMSparrow/OnlineShop/blob/main/%D0%91%D0%94/%D0%91%D0%94.png
+
+---
+
 ## API
 Документация для работы с API представлена в каталоге [swagger] https://github.com/CaptMSparrow/OnlineShop/tree/main/swagger
 Дополнительно ознакомиться можно перейдя по ссылке https://app.swaggerhub.com/apis/myown-816/myShopAPI/1.0.0#/user/get_products11
+
+---
 
 ## Kafka
 Описание используемого брокера сообщений, приложения-продюсера и приложения-потребителя, а также требования представлены в каталоге [Kafka] https://github.com/CaptMSparrow/OnlineShop/tree/main/Kafka
